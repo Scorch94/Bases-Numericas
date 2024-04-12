@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
-}
+} //Eric
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
