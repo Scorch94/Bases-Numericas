@@ -1,59 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
-
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="bases_numericos">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>bases_numericos</title>
-  <link rel="manifest" href="manifest.json">
-
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
-</head>
-<body>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Base Numérica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-      });
-    });
-  </script>
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group select,
+        .input-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        button {
+            background-color: #72006f;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #51004e;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Conversor de Base Numérica</h1>
+        <div class="input-group">
+            <label for="value">Valor:</label>
+            <input type="text" id="value" placeholder="Insira o valor a ser convertido">
+        </div>
+        <div class="input-group">
+            <label for="input-base">Base de Entrada:</label>
+            <select id="input-base">
+                <option value="Decimal">Decimal</option>
+                <option value="Binário">Binário</option>
+                <option value="Octal">Octal</option>
+                <option value="Hexadecimal">Hexadecimal</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="output-base">Base de Saída:</label>
+            <select id="output-base">
+                <option value="Decimal">Decimal</option>
+                <option value="Binário">Binário</option>
+                <option value="Octal">Octal</option>
+                <option value="Hexadecimal">Hexadecimal</option>
+            </select>
+        </div>
+        <button onclick="convertValue()">Converter</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function convertValue() {
+            var inputValue = document.getElementById('value').value.trim();
+            var inputBase = document.getElementById('input-base').value;
+            var outputBase = document.getElementById('output-base').value;
+
+            if (!inputValue) {
+                document.getElementById('result').innerText = "Por favor, insira um valor válido.";
+                return;
+            }
+
+            var outputValue = '';
+
+            switch (inputBase) {
+                case "Decimal":
+                    outputValue = parseInt(inputValue).toString(10);
+                    break;
+                case "Binário":
+                    outputValue = parseInt(inputValue, 2).toString(10);
+                    break;
+                case "Octal":
+                    outputValue = parseInt(inputValue, 8).toString(10);
+                    break;
+                case "Hexadecimal":
+                    outputValue = parseInt(inputValue, 16).toString(10);
+                    break;
+            }
+
+            switch (outputBase) {
+                case "Decimal":
+                    document.getElementById('result').innerText = outputValue || '0';
+                    break;
+                case "Binário":
+                    document.getElementById('result').innerText = outputValue ? parseInt(outputValue).toString(2) : '0';
+                    break;
+                case "Octal":
+                    document.getElementById('result').innerText = outputValue ? parseInt(outputValue).toString(8) : '0';
+                    break;
+                case "Hexadecimal":
+                    document.getElementById('result').innerText = outputValue ? parseInt(outputValue).toString(16) : '0';
+                    break;
+            }
+        }
+    </script>
 </body>
+
 </html>
