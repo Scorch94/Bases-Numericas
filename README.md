@@ -26,8 +26,6 @@ Como usar:
 
 -Visualizar o resultado: O resultado da conversão será exibido logo abaixo da caixa de texto de entrada.
 
--Passo a passo da conversão: O aplicativo exibe uma lista com cada etapa da conversão entre as bases numéricas, permitindo que o usuário visualize o processo detalhado da conversão.
-
 -Tecnologias utilizadas
 
 Flutter: Framework de desenvolvimento de aplicativos móveis multiplataforma.
