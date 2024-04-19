@@ -55,6 +55,8 @@ class _ConverterPageState extends State<ConverterPage> {
   }
 
   // Métodos para converter valores específicos de bases numéricas
+
+  // Converter de Decimal para outra base
   String _convertFromDecimal(int value, String baseTo) {
     switch (baseTo) {
       case "Decimal":
@@ -70,16 +72,19 @@ class _ConverterPageState extends State<ConverterPage> {
     }
   }
 
+// Converter de Binário para outra base
   String _convertFromBinary(String value, String baseTo) {
     int decimalValue = int.parse(value, radix: 2);
     return _convertFromDecimal(decimalValue, baseTo);
   }
 
+  // Converter de Octal para outra base
   String _convertFromOctal(String value, String baseTo) {
     int decimalValue = int.parse(value, radix: 8);
     return _convertFromDecimal(decimalValue, baseTo);
   }
 
+  // Converter de Hexadecimal para outra base
   String _convertFromHexadecimal(String value, String baseTo) {
     int decimalValue = int.parse(value, radix: 16);
     return _convertFromDecimal(decimalValue, baseTo);
