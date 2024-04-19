@@ -4,30 +4,37 @@ void main() {
   runApp(MyApp());
 }
 
+// Classe MyApp, representa o aplicativo
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // Configurações do aplicativo
       title: 'Conversor de Base Numérica',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      // Página inicial do aplicativo
       home: ConverterPage(),
     );
   }
 }
 
+// Página principal do aplicativo
 class ConverterPage extends StatefulWidget {
   @override
   _ConverterPageState createState() => _ConverterPageState();
 }
 
+// Estado da página principal do aplicativo
 class _ConverterPageState extends State<ConverterPage> {
+  // Variáveis para controlar a base de entrada e saída, valores de entrada e saída
   String _selectedBaseInput = "Decimal";
   String _selectedBaseOutput = "Decimal";
   String _inputValue = "";
   String _outputValue = "";
 
+  // Método para converter o valor entre bases numéricas
   void _convertValue(String value, String baseFrom, String baseTo) {
     setState(() {
       switch (baseFrom) {
@@ -47,6 +54,7 @@ class _ConverterPageState extends State<ConverterPage> {
     });
   }
 
+  // Métodos para converter valores específicos de bases numéricas
   String _convertFromDecimal(int value, String baseTo) {
     switch (baseTo) {
       case "Decimal":
@@ -79,6 +87,7 @@ class _ConverterPageState extends State<ConverterPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Interface do aplicativo
     return Scaffold(
       appBar: AppBar(
         title: Text('Conversor de Base Numérica'),
@@ -88,6 +97,7 @@ class _ConverterPageState extends State<ConverterPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Campo de entrada para o valor a ser convertido
             Text('Valor:'),
             TextField(
               onChanged: (value) {
@@ -99,6 +109,7 @@ class _ConverterPageState extends State<ConverterPage> {
               },
             ),
             SizedBox(height: 20.0),
+            // Dropdown para selecionar a base de entrada
             Text('Base de Entrada:'),
             DropdownButton<String>(
               value: _selectedBaseInput,
@@ -117,6 +128,7 @@ class _ConverterPageState extends State<ConverterPage> {
               }).toList(),
             ),
             SizedBox(height: 20.0),
+            // Dropdown para selecionar a base de saída
             Text('Base de Saída:'),
             DropdownButton<String>(
               value: _selectedBaseOutput,
@@ -135,6 +147,7 @@ class _ConverterPageState extends State<ConverterPage> {
               }).toList(),
             ),
             SizedBox(height: 20.0),
+            // Exibição do resultado da conversão
             Text('Resultado: $_outputValue'),
           ],
         ),
